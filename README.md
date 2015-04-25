@@ -2,7 +2,30 @@
 
 Sometimes you need a small code (that has no dependency to a strange library or
 a tool) for scientific computing. In this repository, we distribute such OCaml
-programs under MIT license.
+programs under MIT license (the copyright of each data set belongs to the maker
+of the data).
+
+- [Autocorrelation & Levinson-Durbin recursion](levinson-durbin/):
+  [Levinson-Durbin recursion](http://en.wikipedia.org/wiki/Levinson_recursion)
+  is an algorithm to compute AR coefficients of
+  [autoregressive (AR) model](http://en.wikipedia.org/wiki/Autoregressive_model).
+  The most well-known application of AR model is
+  [linear predictive coding (LPC)](http://en.wikipedia.org/wiki/Linear_predictive_coding),
+  a classic analysis/coding/compression approach for voice. We decompose
+  input voice into *glottal source* (buzz-like sound) and *vocal tract filter
+  characteristics* (filter coefficients) by using Levinson-Durbin algorithm,
+  and analyze or encode the two kinds of sound by different ways.
+  LPC vocoder (voice coder) is applied to
+  [FS-1015](http://en.wikipedia.org/wiki/FS-1015) (secure telephony speech
+  encoding), [Shorten](http://en.wikipedia.org/wiki/Shorten_(file_format)),
+  [MPEG-4 ALS](http://en.wikipedia.org/wiki/MPEG-4_ALS),
+  [FLAC](http://en.wikipedia.org/wiki/FLAC) audio codec, etc. This program
+  computes AR coefficients from time-domain sound and outputs them.
+
+  - Compilation: `ocamlopt dataset.ml levinson.ml`
+  - Data set: Japanese vowel sound /a/, /i/, /u/, /e/, /o/
+    (http://www.gavo.t.u-tokyo.ac.jp/~mine/B3enshu2001/samples.html)
+  - AR order: 20
 
 - [Multilayer neural network](multilayer-neural-network/):
   a neural network that has two or more layers can be used for nonlinear
