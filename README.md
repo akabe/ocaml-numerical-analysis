@@ -27,20 +27,20 @@ of the data).
     (http://www.gavo.t.u-tokyo.ac.jp/~mine/B3enshu2001/samples.html)
   - AR order: 20
 
-- [Multilayer neural network](multilayer-neural-network/):
+- [Naive multilayer neural network](neural-network/naive-multilayer):
   a neural network that has two or more layers can be used for nonlinear
-  classification, regression, etc. in machine learning. In the past, multilayer
-  neural networks are rarely applied for practical tasks because they have some
-  problems such as [over-fitting](http://en.wikipedia.org/wiki/Overfitting) and
+  classification, regression, etc. in machine learning. This code is a very
+  simple implementation of multilayer neural network. This neural network tends
+  to fall into over-fitting. (In the past, multilayer neural networks are rarely
+  applied for practical tasks because they have some problems such as
+  [over-fitting](http://en.wikipedia.org/wiki/Overfitting) and
   [vanishing gradient](http://en.wikipedia.org/wiki/Vanishing_gradient_problem).
   After 2006, [Hinton](http://www.cs.toronto.edu/~hinton/) et al. proposed some
   epoch‐making approaches to solve the problems and accomplished surprisingly
-  high performance. The newer techniques are also known as **deep learning**.
-  This code is a very simple multilayer neural network, i.e., no
-  state-of-the-art techniques like deep learning are **not** implemented. The
-  following default setting is for classification. If you want to use this for
-  regression, you should change the activation function of the output layer to a
-  linear function.
+  high performance. The newer techniques are also known as *deep learning*.)
+  The following default setting is for classification. If you want to use this
+  for regression, you should change the activation function of the output layer
+  to a linear function, and the error function to sum of squared errors.
 
   - Compilation: `ocamlopt dataset.ml neuralNetwork.ml`
   - Data set: [Ionosphere (UCI Machine Learning Repository)](https://archive.ics.uci.edu/ml/datasets/Ionosphere)
