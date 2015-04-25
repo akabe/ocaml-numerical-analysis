@@ -5,6 +5,12 @@ a tool) for scientific computing. In this repository, we distribute such OCaml
 programs under MIT license (the copyright of each data set belongs to the maker
 of the data).
 
+- [Durand-Kerner-Aberth method](durand-kerner-aberth/):
+  [Durand-Kerner method](http://en.wikipedia.org/wiki/Durand%E2%80%93Kerner_method)
+  is an algorithm to find all (complex) roots of a given polynominal at the same
+  time, and [Aberth method](http://en.wikipedia.org/wiki/Aberth_method) is an
+  approach to compute the initial values for Durand-Kerner method.
+
 - [Autocorrelation & Levinson-Durbin recursion](levinson-durbin/):
   [Levinson-Durbin recursion](http://en.wikipedia.org/wiki/Levinson_recursion)
   is an algorithm to compute AR coefficients of
