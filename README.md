@@ -5,6 +5,14 @@ a tool) for scientific computing. In this repository, we distribute such OCaml
 programs under MIT license (the copyright of each data set belongs to the maker
 of the data).
 
+- [Fast Fourier transform](fft/):
+  This is an implementation of radix-2
+  [Cooley-Tukey fast Fourier transform (FFT) algorithm](http://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm),
+  the most famous method in FFT algorithms. The naive computation of discrete
+  Fourier transform according to the definition takes O(n^2) time, but this
+  algorithm takes O(n log n) time. Fourier transform is frequently used for
+  signal analysis, data compression, etc.
+
 - [Durand-Kerner-Aberth method](durand-kerner-aberth/):
   [Durand-Kerner method](http://en.wikipedia.org/wiki/Durand%E2%80%93Kerner_method)
   is an algorithm to find all (complex) roots of a given polynominal at the same
