@@ -5,6 +5,17 @@ a tool) for scientific computing. In this repository, we distribute such OCaml
 programs under MIT license (the copyright of each data set belongs to the maker
 of the data).
 
+## Linear algebra
+
+- [LUP decomposition](lup-decomposition):
+  [LUP decomposition](http://en.wikipedia.org/wiki/LU_decomposition) is
+  factorization such that `PA = LU` where `A` is a square matrix, `L` is
+  a lower triangular matrix, `U` is a upper triangular matrix, and `P` is
+  a permutation matrix. LUP decomposition is used for solving linear equations,
+  computing determinant, etc. This code implements Crout's method.
+
+## Signal processing
+
 - [Fast Fourier transform](fft/):
   This is an implementation of radix-2
   [Cooley-Tukey fast Fourier transform (FFT) algorithm](http://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm),
@@ -12,12 +23,6 @@ of the data).
   Fourier transform according to the definition takes O(n^2) time, but this
   algorithm takes O(n log n) time. Fourier transform is frequently used for
   signal analysis, data compression, etc.
-
-- [Durand-Kerner-Aberth method](durand-kerner-aberth/):
-  [Durand-Kerner method](http://en.wikipedia.org/wiki/Durand%E2%80%93Kerner_method)
-  is an algorithm to find all (complex) roots of a given polynominal at the same
-  time, and [Aberth method](http://en.wikipedia.org/wiki/Aberth_method) is an
-  approach to compute the initial values for Durand-Kerner method.
 
 - [Autocorrelation & Levinson-Durbin recursion](levinson-durbin/):
   [Levinson-Durbin recursion](http://en.wikipedia.org/wiki/Levinson_recursion)
@@ -40,6 +45,8 @@ of the data).
   - Data set: Japanese vowel sound /a/, /i/, /u/, /e/, /o/
     (http://www.gavo.t.u-tokyo.ac.jp/~mine/B3enshu2001/samples.html)
   - AR order: 20
+
+## Machine learning
 
 - [Naive multilayer neural network](neural-network/naive-multilayer):
   a neural network that has two or more layers can be used for nonlinear
@@ -70,3 +77,11 @@ of the data).
   - The 2nd hidden layer: 5 units, activation function = tanh
   - The output layer: 2 units (binary classification, 1-of-K coding),
     activation function = softmax
+
+## Miscellaneous
+
+- [Durand-Kerner-Aberth method](durand-kerner-aberth/):
+  [Durand-Kerner method](http://en.wikipedia.org/wiki/Durand%E2%80%93Kerner_method)
+  is an algorithm to find all (complex) roots of a given polynominal at the same
+  time, and [Aberth method](http://en.wikipedia.org/wiki/Aberth_method) is an
+  approach to compute the initial values for Durand-Kerner method.
