@@ -9,8 +9,8 @@ of the data).
 
 - [LUP decomposition](lup-decomposition):
   [LUP decomposition](http://en.wikipedia.org/wiki/LU_decomposition) is
-  factorization such that `PA = LU` where `A` is a square matrix, `L` is
-  a lower triangular matrix, `U` is a upper triangular matrix, and `P` is
+  factorization such that `PA = LU` where `A` is a matrix, `L` is
+  a lower trapezoidal matrix, `U` is a upper trapezoidal matrix, and `P` is
   a permutation matrix. LUP decomposition is used for solving linear equations,
   computing determinant, etc. This code implements Crout's method.
 
