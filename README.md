@@ -48,6 +48,8 @@ of the data).
 
 ## Machine learning
 
+### Classification
+
 - [Naive multilayer neural network](neural-network/naive-multilayer):
   a neural network that has two or more layers can be used for nonlinear
   classification, regression, etc. in machine learning. This code is a very
@@ -77,6 +79,18 @@ of the data).
   - The 2nd hidden layer: 5 units, activation function = tanh
   - The output layer: 2 units (binary classification, 1-of-K coding),
     activation function = softmax
+
+### Clustering
+
+- [K-means](k-means/):
+  [K-means method](http://en.wikipedia.org/wiki/K-means_clustering) is a classic
+  clustering approach in machine learning.
+
+  - Compilation: `ocamlopt dataset.ml kmeans.ml`
+  - Data set: artificially generated according to three kinds of Gaussian distribution
+    (dimension = 2, \#classes = 3)
+
+    ![The distribution of data points](https://github.com/akabe/ocaml-numerical-analysis/k-means/dataset.png)
 
 ## Miscellaneous
 
