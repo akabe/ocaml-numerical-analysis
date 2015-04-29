@@ -90,7 +90,7 @@ of the data).
   - Data set: artificially generated according to three kinds of Gaussian distribution
     (dimension = 2, \#classes = 3)
 
-    ![The distribution of data points](https://github.com/akabe/ocaml-numerical-analysis/k-means/dataset.png)
+    ![The distribution of data points](k-means/dataset.png)
 
 ## Miscellaneous
 
