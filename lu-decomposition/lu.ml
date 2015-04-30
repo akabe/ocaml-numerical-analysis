@@ -1,4 +1,4 @@
-(** lup.ml --- LUP decompisition by Crout's method
+(** lu.ml --- LU decompisition by Crout's method
 
     [MIT License] Copyright (C) 2015 Akinori ABE
 *)

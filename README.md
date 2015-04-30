@@ -1,28 +1,34 @@
 # Stand-alone programs for numerical analysis in OCaml
 
-Sometimes you need a small code (that has no dependency to a strange library or
-a tool) for scientific computing. In this repository, we distribute such OCaml
-programs under MIT license (the copyright of each data set belongs to the maker
-of the data).
+Sometimes you need a small code (that has no dependency to a huge or unfamiliar
+library/tool) for scientific computing. In this repository, we distribute such
+[OCaml](http://ocaml.org/) programs under MIT license (the copyright of each
+data set belongs to the maker of the data).
 
 ## Linear algebra
 
-- [LUP decomposition](lup-decomposition):
-  [LUP decomposition](http://en.wikipedia.org/wiki/LU_decomposition) is
-  factorization such that `PA = LU` where `A` is a matrix, `L` is
+- [LU decomposition](lu-decomposition/):
+  [LU decomposition](http://en.wikipedia.org/wiki/LU_decomposition) is
+  factorization such that `PA = LU` (or `A = PLU`) where `A` is a matrix, `L` is
   a lower trapezoidal matrix, `U` is a upper trapezoidal matrix, and `P` is
-  a permutation matrix. LUP decomposition is used for solving linear equations,
+  a permutation matrix. LU decomposition is used for solving linear equations,
   computing determinant, etc. This code implements Crout's method.
+
+  - Compilation: `ocamlopt lu.ml`
 
 ## Signal processing
 
 - [Fast Fourier transform](fft/):
   This is an implementation of radix-2
   [Cooley-Tukey fast Fourier transform (FFT) algorithm](http://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm),
-  the most famous method in FFT algorithms. The naive computation of discrete
-  Fourier transform according to the definition takes O(n^2) time, but this
-  algorithm takes O(n log n) time. Fourier transform is frequently used for
-  signal analysis, data compression, etc.
+  the most famous method in FFT algorithms. The naive computation according to
+  the definition of discrete Fourier transform (DFT) takes `O(n^2)` time where
+  `n` is the number of input points, but this FFT algorithm takes only
+  `O(n log n)` time. Input length `n` must be equal to `2^m` (where `m` is a
+  natural number). Fourier transform is frequently used for signal analysis,
+  data compression, etc.
+
+  - Compilation: `ocamlopt fft.ml`
 
 - [Autocorrelation & Levinson-Durbin recursion](levinson-durbin/):
   [Levinson-Durbin recursion](http://en.wikipedia.org/wiki/Levinson_recursion)
@@ -42,8 +48,10 @@ of the data).
   computes AR coefficients from time-domain sound and outputs them.
 
   - Compilation: `ocamlopt dataset.ml levinson.ml`
-  - Data set: Japanese vowel sound /a/, /i/, /u/, /e/, /o/
-    (http://www.gavo.t.u-tokyo.ac.jp/~mine/B3enshu2001/samples.html)
+  - Data set: Japanese vowel sound /a/ (1957 points), /i/ (3439 points),
+    /u/ (2644 points), /e/ (3316 points), /o/ (2793 points);
+    sampling rate = 16000, original data is at
+    http://www.gavo.t.u-tokyo.ac.jp/~mine/B3enshu2001/samples.html
   - AR order: 20
 
 ## Machine learning
@@ -75,7 +83,7 @@ of the data).
   - Error function: cross-entropy
   - Layers: 4 layers + the input layer (all neurons in each layer are connected
     with all neurons in the lower layer.
-  - The 1st hidden layer: 10 unis, activation function = tanh
+  - The 1st hidden layer: 10 units, activation function = tanh
   - The 2nd hidden layer: 5 units, activation function = tanh
   - The output layer: 2 units (binary classification, 1-of-K coding),
     activation function = softmax
@@ -83,12 +91,12 @@ of the data).
 ### Clustering
 
 - [K-means](k-means/):
-  [K-means method](http://en.wikipedia.org/wiki/K-means_clustering) is a classic
-  clustering approach in machine learning.
+  This program implements a classic clustering approach
+  [K-means](http://en.wikipedia.org/wiki/K-means_clustering).
 
   - Compilation: `ocamlopt dataset.ml kmeans.ml`
-  - Data set: artificially generated according to three kinds of Gaussian distribution
-    (dimension = 2, \#classes = 3)
+  - Data set: artificially generated according to three kinds of Gaussian
+    distribution (dimension = 2, \#classes = 3, \#points of each class = 100)
 
     ![The distribution of data points](k-means/dataset.png)
 
@@ -99,3 +107,5 @@ of the data).
   is an algorithm to find all (complex) roots of a given polynominal at the same
   time, and [Aberth method](http://en.wikipedia.org/wiki/Aberth_method) is an
   approach to compute the initial values for Durand-Kerner method.
+
+  - Compilation: `ocamlopt dka.ml`
