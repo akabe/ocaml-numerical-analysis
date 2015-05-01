@@ -16,6 +16,17 @@ data set belongs to the maker of the data).
 
   - Compilation: `ocamlopt lu.ml`
 
+- [QR decomposition](qr-decomposition/):
+  [QR decomposition](http://en.wikipedia.org/wiki/QR_decomposition) is
+  to factorize square matrix `A` into `QR` where `Q` is an orthogonal matrix and
+  `R` is a right triangular matrix (a.k.a., an upper triangular matrix). QR
+  decomposition is used for solving linear equations, eigenproblems, etc. This
+  code QR-decomposes a given square matrix by
+  [Gram-Schmidt orthonormalization](http://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process).
+  If `A` is not full-rank, `Q` has zero vectors of the nullity of `A`.
+
+  - Compilation: `ocamlopt qr.ml`
+
 ## Signal processing
 
 - [Fast Fourier transform](fft/):
