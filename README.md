@@ -120,3 +120,11 @@ data set belongs to the maker of the data).
   approach to compute the initial values for Durand-Kerner method.
 
   - Compilation: `ocamlopt dka.ml`
+
+## Utilities
+
+- [WAV reader/writer](wav/):
+  A lightweight reader/writer for WAV files. This code only supports
+  uncompressed linear PCM format.
+
+  - Compilation: `ocamlopt -c wav.mli wav.ml`
