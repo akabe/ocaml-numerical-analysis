@@ -1,4 +1,4 @@
-(** qr_householder.ml --- QR decompisition by Householder transformation
+(** qr.ml --- QR decompisition by Householder transformation
 
     [MIT License] Copyright (C) 2015 Akinori ABE *)
 
@@ -15,6 +15,7 @@ module Array = struct
     (m, n)
 
   let map2 f x y = mapi (fun i xi -> f xi y.(i)) x
+  let iter2 f x y = iteri (fun i xi -> f xi y.(i)) x
 
   let fold_left2 f init x y =
     let acc = ref init in
@@ -22,13 +23,42 @@ module Array = struct
     !acc
 end
 
+(* ================================================================= *
+ * BLAS-like functions for linear algebraic operations
+ * ================================================================= *)
+
 (** Dot product of two vectors *)
 let dot = Array.fold_left2 (fun acc xi yi -> acc +. xi *. yi) 0.0
+
+(** Execute [y := alpha * x + y] where [alpha] is a scalar, [x] and [y] are
+    vectors. *)
+let axpy ~alpha x y =
+  let n = Array.length x in
+  for i = 0 to n - 1 do y.(i) <- alpha *. x.(i) +. y.(i) done
+
+(** [gemv_t a x] computes [a^T * x] where [a] is a matrix and [x] is a vector.
+*)
+let gemv_t a x =
+  let (_, n) = Array.matrix_size a in
+  let y = Array.make n 0.0 in
+  Array.iter2 (fun ai xi -> axpy ~alpha:xi ai y) a x;
+  y
+
+(** [gemm x y] computes [x * y] where [x] and [y] are (rectangular) matrices. *)
+let gemm x y =
+  let m, k = Array.matrix_size x in
+  let k', n = Array.matrix_size y in
+  assert(k = k');
+  Array.map (gemv_t y) x
 
 (** Transpose a given matrix. *)
 let trans a =
   let m, n = Array.matrix_size a in
   Array.init_matrix n m (fun i j -> a.(j).(i))
+
+(* ================================================================= *
+ * QR decomposition via Householder transformation
+ * ================================================================= *)
 
 (** [householder x y] returns householder transformation matrix [h] (such that
     [h * x] = [y] and [h * y] = [x]). *)
@@ -71,22 +101,9 @@ let qr a =
   let r = Array.init_matrix n m (fun i j -> if i <= j then w.(j).(i) else 0.) in
   (q, r)
 
-(** [foldi f init i j] is [f (... (f (f init i) (i+1)) ...) j]. *)
-let foldi f init i j =
-  let acc = ref init in
-  for k = i to j do acc := f !acc k done;
-  !acc
-
-(** [sumi f i j] is [f i +. f (i+1) +. ... +. f j] *)
-let sumi f i j = foldi (fun acc k -> acc +. f k) 0.0 i j
-
-(** Matrix multiplication *)
-let gemm x y =
-  let m, k = Array.matrix_size x in
-  let k', n = Array.matrix_size y in
-  assert(k = k');
-  Array.init_matrix m n
-    (fun i j -> sumi (fun l -> x.(i).(l) *. y.(l).(j)) 0 (k - 1))
+(* ================================================================= *
+ * Main routine
+ * ================================================================= *)
 
 let print_mat label x =
   printf "%s =@\n" label;
