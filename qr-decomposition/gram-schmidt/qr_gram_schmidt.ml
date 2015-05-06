@@ -1,4 +1,4 @@
-(** qr.ml --- QR decompisition by Gram-Schmidt orthonormalization
+(** qr_gram_schmidt.ml --- QR decompisition by Gram-Schmidt orthonormalization
 
     [MIT License] Copyright (C) 2015 Akinori ABE
 *)

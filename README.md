@@ -16,16 +16,30 @@ data set belongs to the maker of the data).
 
   - Compilation: `ocamlopt lu.ml`
 
-- [QR decomposition](qr-decomposition/):
-  [QR decomposition](http://en.wikipedia.org/wiki/QR_decomposition) is
-  to factorize square matrix `A` into `QR` where `Q` is an orthogonal matrix and
-  `R` is a right triangular matrix (a.k.a., an upper triangular matrix). QR
-  decomposition is used for solving linear equations, eigenproblems, etc. This
-  code QR-decomposes a given square matrix by
-  [Gram-Schmidt orthonormalization](http://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process).
+### QR decomposition
+
+[QR decomposition](http://en.wikipedia.org/wiki/QR_decomposition) is to
+factorize matrix `A` into `QR` where `Q` is an orthogonal matrix and `R` is a
+right triangular matrix (a.k.a., an upper triangular matrix). QR decomposition
+is used for solving linear equations, eigenproblems, etc.
+
+- [Householder transformation](qr-decomposition/householder/):
+  The implementation of this program is based on
+  [Householder transformation](http://en.wikipedia.org/wiki/Householder_transformation).
+  If you do not have enough knowledge about QR decomposition algorithms, we
+  recommend you to use this code rather than Gram-Schmidt version because the
+  former can accept a rectangular matrix and can compute all columns in `Q`
+  for rank-deficient matrix `A`.
+
+  - Compilation: `ocamlopt qr_householder.ml`
+
+- [Gram-Schmidt orthonormalization](qr-decomposition/gram-schmidt/):
+  This version uses
+  [Gram-Schmidt orthonormalization](http://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process)
+  for QR decomposition. This code only supports a square matrix as `A`.
   If `A` is not full-rank, `Q` has zero vectors of the nullity of `A`.
 
-  - Compilation: `ocamlopt qr.ml`
+  - Compilation: `ocamlopt qr_gram_schmidt.ml`
 
 ## Signal processing
 
