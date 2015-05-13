@@ -16,6 +16,16 @@ data set belongs to the maker of the data).
 
   - Compilation: `ocamlopt lu.ml`
 
+- [QR decomposition](qr-decomposition/):
+  [QR decomposition](http://en.wikipedia.org/wiki/QR_decomposition) is to
+  factorize matrix `A` into `QR` where `Q` is an orthogonal matrix and `R` is a
+  right trapezoidal matrix (a.k.a., an upper trapezoidal matrix).
+  QR decomposition is used for solving linear equations, eigenproblems, etc.
+  This program performs QR decomposition via
+  [Householder transformation](http://en.wikipedia.org/wiki/Householder_transformation).
+
+  - Compilation: `ocamlopt qr.ml`
+
 ## Signal processing
 
 - [Fast Fourier transform](fft/):
@@ -68,7 +78,7 @@ data set belongs to the maker of the data).
   [vanishing gradient](http://en.wikipedia.org/wiki/Vanishing_gradient_problem).
   After 2006, [Hinton](http://www.cs.toronto.edu/~hinton/) et al. proposed some
   epoch‐making approaches to solve the problems and accomplished surprisingly
-  high performance. The newer techniques are also known as *deep learning*.)
+  high performance. The newer techniques are known as *deep learning*.)
   The following default setting is for classification. If you want to use this
   for regression, you should change the activation function of the output layer
   to a linear function, and the error function to sum of squared errors.
@@ -77,11 +87,11 @@ data set belongs to the maker of the data).
   - Data set: [Ionosphere (UCI Machine Learning Repository)](https://archive.ics.uci.edu/ml/datasets/Ionosphere)
     (\#features = 34, \#classes = 2)
   - Training: error backpropagation
-    [[Rumelhard et al., 1986]](http://dl.acm.org/citation.cfm?id=104293) +
+    [[Rumelhart et al., 1986]](http://dl.acm.org/citation.cfm?id=104293) +
     stochastic gradient descent (with a constant learning rate)
   - Regularization: none
   - Error function: cross-entropy
-  - Layers: 4 layers + the input layer (all neurons in each layer are connected
+  - Layers: 3 layers + the input layer (all neurons in each layer are connected
     with all neurons in the lower layer.
   - The 1st hidden layer: 10 units, activation function = tanh
   - The 2nd hidden layer: 5 units, activation function = tanh
@@ -109,3 +119,11 @@ data set belongs to the maker of the data).
   approach to compute the initial values for Durand-Kerner method.
 
   - Compilation: `ocamlopt dka.ml`
+
+## Utilities
+
+- [WAV reader/writer](wav/):
+  A lightweight reader/writer for WAV files. This code only supports
+  uncompressed linear PCM format.
+
+  - Compilation: `ocamlopt -c wav.mli wav.ml`
