@@ -96,7 +96,7 @@ data set belongs to the maker of the data).
 
   - Compilation: `ocamlopt dataset.ml kmeans.ml`
   - Data set: artificially generated according to three kinds of Gaussian
-    distribution (dimension = 2, \#classes = 3, \#points of each class = 100)
+    distribution (dimension = 2, \#classes = 3, \#points of each class = 1000)
 
     ![The distribution of data points](k-means/dataset.png)
 
