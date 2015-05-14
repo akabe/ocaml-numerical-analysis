@@ -50,16 +50,15 @@ let lup a0 =
   let p = Array.init m (fun i -> i) in (* permutation indices *)
   let lu = Array.make_matrix m n 0.0 in
   let aux i j q = a.(i).(j) -. sumi (fun k -> lu.(i).(k) *. lu.(k).(j)) 0 q in
-  let get_pivot j =
-    maxi (fun i -> abs_float (aux i j (min (i-1) (r-1)))) j (m-1)
-  in
+  let get_pivot j = maxi (fun i -> abs_float a.(i).(j)) j (m-1) in
   for j = 0 to r - 1 do
     (* pivot selection (swapping rows) *)
     let j' = get_pivot j in
     if j <> j' then Array.(swap p j j' ; swap a j j' ; swap lu j j');
     (* Compute LU decomposition *)
     for i = 0 to j do lu.(i).(j) <- aux i j (i-1) done;
-    for i = j+1 to m-1 do lu.(i).(j) <- aux i j (j-1) /. lu.(j).(j) done
+    if abs_float lu.(j).(j) > 1e-6 (* Avoid divsion by zero *)
+    then for i = j+1 to m-1 do lu.(i).(j) <- aux i j (j-1) /. lu.(j).(j) done
   done;
   (* Compute the right block in the upper trapezoidal matrix *)
   for j = r to n-1 do
@@ -84,13 +83,16 @@ let print_mat label x =
 let () =
   let a =
     [|
-      [| 0.; 2.; 3.; 0.; 9.|];
-      [|-1.; 1.; 4.; 2.; 3.|];
-      [| 6.; 0.;-9.; 1.; 0.|];
-      [| 3.; 5.; 0.; 0.; 1.|];
-      [|-8.; 3.; 1.;-5.; 2.|];
-      [|-2.;-1.;-1.; 4.; 6.|]
-    |] in
+    [| 0.; 2.; 3.; 0.; 9.;  0.; 2.; 3.; 0.|];
+    [|-1.; 1.; 4.; 2.; 3.; -1.; 1.; 4.; 2.|];
+    [| 6.; 0.;-9.; 1.; 0.;  6.; 0.;-9.; 1.|];
+    [| 3.; 5.; 0.; 0.; 1.;  3.; 5.; 0.; 0.|];
+    [|-8.; 3.; 1.;-5.; 2.; -8.; 3.; 1.;-5.|];
+    [|-2.;-1.;-1.; 4.; 6.; -2.;-1.;-1.; 4.|];
+    [| 0.; 2.; 3.; 0.; 9.;  0.; 2.; 3.; 0.|];
+    [|-1.; 1.; 4.; 2.; 3.; -1.; 1.; 4.; 2.|];
+    [| 6.; 0.;-9.; 1.; 0.;  6.; 0.;-9.; 1.|];
+  |]  in
   let p, lu = lup a in
   let m, n = Array.matrix_size lu in
   let r = min m n in
